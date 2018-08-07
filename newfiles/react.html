@@ -1,0 +1,192 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <title>react实战</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <style>
+      .box{
+       margin-left: 20px;
+       margin-top: 20px;
+      }
+      .font{
+        margin-left: 10px;
+        color: brown;
+      }
+    
+    </style>
+  </head>
+  <body>
+    <div id="example"></div>
+    <!-- <button type="btn btn-danger" onClick = {submit}>提交</button> <br/><br/> -->
+    <!-- <a href="http://www.baidu.com" onClick = {link}>百度一下</a> -->
+    
+  </body>
+  <script type="text/babel">
+  
+  // 练习react写法
+    // function Link(){
+    //   function link(e){
+    //     e.preventDefault();
+    //     console.log('跳转已被终止')
+    //   }
+
+    //   return (
+    //     <a href='http://www.baidu.com' onClick={link}>
+    //       百度一下
+    //     </a>
+    //   )
+    // }
+
+    // ReactDOM.render(
+    //   <Link />,
+    //   document.getElementById('example')
+    // );
+
+    // function Lgc(props){
+    //   return <h1>雷庚辰</h1>;
+    // }
+    // const lgc = <Lgc/>
+    // ReactDOM.render(
+    //   lgc,
+    //   document.getElementById('example')
+    // )
+
+  /*
+   *   state
+  */
+  // class Clock extends React.Component{
+  //   constructor(props){
+  //     super(props);
+  //     this.state = {date:new Date()};
+  //   }
+
+  //   render(){
+  //     return(
+  //       <div>
+  //         <h1>hello word</h1>  
+  //         <h2>现在是北京时间{this.state.date.toLocaleTimeString()}</h2>  
+  //       </div>
+  //     );
+  //   }
+  // }
+
+  // ReactDOM.render(
+  //   <Clock />,
+  //   document.getElementById('example')
+  // );
+
+
+  /*
+    props
+  */
+    // class HelloMessage extends React.Component {
+    //   render(){
+    //     return (
+    //       <h1>hello {this.props.name}</h1>
+    //     )
+    //   }
+    // }
+
+    // HelloMessage.defaultProps = {   //defaultProps 可以自定义属性值
+    //   name:'lgc',
+    // }
+
+    // const element = <HelloMessage/>;
+
+    // ReactDOM.render(
+    //   element,
+    //   document.getElementById('example')
+    // )
+
+    /*
+    点击事件
+    */
+    // class Link extends React.Component{
+    //   constructor(props){
+    //     super(props);
+    //     this.state = {
+    //       isToggleOn:true
+    //     };
+    //     this.handleClick = this.handleClick.bind(this);
+    //   }
+
+    //   handleClick(){
+    //     this.setState(
+    //       prevState => (
+    //         {isToggleOn:!prevState.isToggleOn}
+    //       )
+    //     )
+    //   }
+
+    //   render(){
+    //     return(
+    //       <button onClick={this.handleClick}>
+    //         {this.state.isToggleOn ? 'ON' : 'OFF'}
+    //       </button>
+    //     )
+    //   }
+    // }
+
+    // ReactDOM.render(
+    //   <Link />,
+    //   document.getElementById('example')
+    // );
+
+
+    /*
+    * 按钮实现加减法
+    */
+
+    let style1 = {
+      color:'#f60',
+    }
+
+    class Add extends React.Component{
+      constructor(props){
+        super(props);
+        this.state = {
+          count:0
+        }
+        //this.add = this.add.bind(this);  //  加法函数
+        //this.reduce = this.reduce.bind(this);   // 减法函数
+      }
+      //  加法函数
+      add = () =>{
+        this.setState(
+          {count : this.state.count + 1}
+        )
+      }
+
+       //  减法函数
+       reduce = () => {
+        this.setState(
+          {count : this.state.count - 1}
+        )
+      }
+
+      render(){
+        return(
+          <div>
+            <h3 style={style1}>点击按钮</h3>
+            <button className='box' onClick = {this.add}> + </button>
+            <button className='box' onClick = {this.reduce}> - </button>
+            <span className='font'>{this.props.name}</span>
+            <span className='font'>{this.state.count}</span>
+          </div>
+        )
+      }
+
+    }
+    
+      ReactDOM.render(
+      <Add name = '当前点击次数:'/>,
+      document.getElementById('example')
+    );
+   // export default Add;
+  </script>
+  <script src="https://cdn.bootcss.com/react/16.4.0/umd/react.development.js"></script>
+  <script src="https://cdn.bootcss.com/react-dom/16.4.0/umd/react-dom.development.js"></script>
+  <script src="https://cdn.bootcss.com/babel-standalone/6.26.0/babel.min.js"></script>
+</html>
