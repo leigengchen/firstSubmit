@@ -1,0 +1,103 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <title>react实战</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <style>
+      .box{
+       margin-left: 20px;
+       margin-top: 20px;
+      }
+      .font{
+        margin-left: 10px;
+        color: brown;
+      }
+    
+    </style>
+  </head>
+  <body>
+    <div id="example"></div>
+    <div id="box"></div>
+    <div id="box1"></div>
+    
+  </body>
+  <script type="text/babel">
+    class Toggle extends React.Component {
+      constructor(props){
+        super(props);
+        this.state = {
+          isToggle:true,
+        };
+       // this.handleClick = this.handleClick.bind(this);
+      }
+      handleClick(){
+        this.setState(()=>({
+          isToggle:!this.state.isToggle,
+        }));
+      }
+
+      render(){
+        return(
+          <div>
+            <button onClick={(e)=>this.handleClick(e)}>
+              {this.state.isToggle?'开':'关'}  
+            </button>
+          </div>
+        )
+      }
+    }
+
+    ReactDOM.render(
+      <Toggle/>,
+      document.getElementById('example')
+    )
+
+    // 阻止事件默认事件
+    class Popper extends React.Component{
+      constructor(props){
+        super(props);
+        this.state = {name:'Hello world'}
+      }
+
+      preventPop(name,e){
+        e.preventDefault();
+        alert(name);
+      }
+
+      render(){
+        return(
+          <div>
+            <p>hello</p>  
+            <a href='http://www.baidu.com' onClick={this.preventPop.bind(this,this.state.name)}>
+              百度  
+            </a>
+          </div>
+        )
+      }
+    }
+
+    ReactDOM.render(
+      <Popper/>,
+      document.getElementById('box')
+    )
+
+    //遍历数组 Key值
+    const arr1 = [1,2,3,4,5];
+    const arr2 = arr1.map((num)=>num * 2);
+    console.log(arr2);
+    const listItems = arr2.map((num,index)=>(<li key={num.toString()} name={num.toString()}>{num * 10}</li>))
+    ReactDOM.render(
+      <ul>{listItems}</ul>,
+      document.getElementById('box1'),
+    )
+
+
+  
+  </script>
+  <script src="https://cdn.bootcss.com/react/16.4.0/umd/react.development.js"></script>
+  <script src="https://cdn.bootcss.com/react-dom/16.4.0/umd/react-dom.development.js"></script>
+  <script src="https://cdn.bootcss.com/babel-standalone/6.26.0/babel.min.js"></script>
+  <script src="https://cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+</html>
